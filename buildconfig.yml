@@ -1,0 +1,19 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: gts-che-devfile-registry
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'che-devfile-registry:latest'
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: build/dockerfiles/rhel.Dockerfile
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/josephassiga/che-devfiles-registry.git'
+      ref: master
+    contextDir: /
